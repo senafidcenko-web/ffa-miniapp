@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0A0B0D" />
+    <meta name="color-scheme" content="dark" />
+    <title>F Finance</title>
+    <!-- Официальный SDK Telegram Mini Apps: подключается до наших скриптов (core.telegram.org/bots/webapps). -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script type="module" crossorigin src="./assets/index-tE5bUmdU.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-NjvMuygC.css">
+  </head>
+  <body>
+    <div id="app" hidden>
+      <header class="header">
+        <p class="eyebrow">F Finance</p>
+        <h1 class="title" id="screen-title">Кошельки</h1>
+      </header>
+
+      <main class="content">
+        <section class="screen" id="screen-wallets" data-tab="wallets">
+          <div class="card">
+            <p class="label">Подключить кошелёк TON</p>
+            <p class="caption">Приложение видит только адрес. Подписей и переводов нет.</p>
+            <div class="connect-row">
+              <div id="ton-connect"></div>
+            </div>
+            <p class="connected" id="connected" hidden>
+              <span class="caption">Подключён</span>
+              <span class="mono" id="connected-address"></span>
+            </p>
+          </div>
+
+          <form class="card" id="add-form" novalidate>
+            <label class="label" for="address-input">Добавить адрес</label>
+            <p class="caption">TON или EVM (Ethereum, BNB Chain). Список хранится только на этом аккаунте Telegram.</p>
+            <div class="field-row">
+              <input
+                class="field"
+                id="address-input"
+                name="address"
+                type="text"
+                inputmode="text"
+                autocomplete="off"
+                autocapitalize="off"
+                spellcheck="false"
+                placeholder="UQ… или 0x…"
+                maxlength="80"
+              />
+              <button class="button" type="submit">Добавить</button>
+            </div>
+            <p class="error" id="add-error" role="alert" hidden></p>
+          </form>
+
+          <div class="card list-card">
+            <p class="label">Мои адреса</p>
+            <ul class="list" id="wallet-list"></ul>
+            <div class="empty" id="wallets-empty">
+              <p class="empty-title">Пока пусто</p>
+              <p class="caption">Добавьте адрес выше — он появится здесь.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Экраны рисует код (src/screens): здесь только контейнеры. -->
+        <section class="screen" id="screen-dashboard" data-tab="dashboard" hidden></section>
+        <section class="screen" id="screen-rates" data-tab="rates" hidden></section>
+      </main>
+
+      <nav class="tabbar" aria-label="Разделы">
+        <button class="tab" type="button" data-tab="wallets" aria-current="page">Кошельки</button>
+        <button class="tab" type="button" data-tab="dashboard">Дашборд</button>
+        <button class="tab" type="button" data-tab="rates">Курсы</button>
+      </nav>
+    </div>
+
+    <div class="blocked" id="blocked" hidden>
+      <p class="empty-title">Приложение недоступно</p>
+    </div>
+
+  </body>
+</html>
